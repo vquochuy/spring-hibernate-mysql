@@ -7,15 +7,15 @@ import com.vquochuy.model.Employee;
 public interface EmployeeService {
 	Employee findById(int id);
 
-	void save(Employee employee);
+	void saveEmployee(Employee employee);
 
-	void update(Employee employee);
+	void updateEmployee(Employee employee);
 
-	void deleteEmloyeeBySSN(String ssn);
+	void deleteEmployeeBySsn(String ssn);
 
-	List<Employee> findAll();
+	List<Employee> findAllEmployees();
 
-	Employee findEmployeeBySSN(String ssn);
+	Employee findEmployeeBySsn(String ssn);
 
 	boolean isEmployeeSsnUnique(Integer id, String ssn);
 }

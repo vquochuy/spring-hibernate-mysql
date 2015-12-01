@@ -12,7 +12,7 @@ import com.vquochuy.model.Employee;
 @Service("EmployeeService")
 @Transactional
 public class EmployeeServiceImpl implements EmployeeService {
-	
+
 	@Autowired
 	EmployeeDao employeeDao;
 
@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void save(Employee employee) {
+	public void saveEmployee(Employee employee) {
 		employeeDao.save(employee);
 
 	}
@@ -34,7 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * transaction ends.
 	 */
 	@Override
-	public void update(Employee employee) {
+	public void updateEmployee(Employee employee) {
 		Employee entity = employeeDao.findById(employee.getId());
 		if (entity != null) {
 			entity.setName(employee.getName());
@@ -45,24 +45,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void deleteEmloyeeBySSN(String ssn) {
+	public void deleteEmployeeBySsn(String ssn) {
 		employeeDao.deleteEmployeeBySSN(ssn);
 	}
 
 	@Override
-	public List<Employee> findAll() {
+	public List<Employee> findAllEmployees() {
 		return employeeDao.findAll();
 	}
 
 	@Override
-	public Employee findEmployeeBySSN(String ssn) {
+	public Employee findEmployeeBySsn(String ssn) {
 		return employeeDao.findEmployeeBySSN(ssn);
 	}
 
 	@Override
 	public boolean isEmployeeSsnUnique(Integer id, String ssn) {
-		// TODO Auto-generated method stub
-		return false;
+		Employee employee = findEmployeeBySsn(ssn);
+		return (employee == null || ((id != null) && (employee.getId() == id)));
 	}
 
 }
